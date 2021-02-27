@@ -56,15 +56,18 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\MouseClickDirectMovement.cs" />
     <Compile Include="Assets\Main_menu.cs" />
+    <Compile Include="Assets\Scripts\heap.cs" />
     <Compile Include="Assets\Scripts\Pathfinding.cs" />
     <Compile Include="Assets\scr.cs" />
     <Compile Include="Assets\Scripts\PathfindingGrid.cs" />
     <Compile Include="Assets\scip.cs" />
-    <Compile Include="Assets\Scripts\heap.cs" />
-    <Compile Include="Assets\Scripts\PathRequestManager.cs" />
     <Compile Include="Assets\Scripts\Unit.cs" />
+    <Compile Include="Assets\Scripts\CameraMovement.cs" />
+    <Compile Include="Assets\Scripts\ClickManager.cs" />
+    <Compile Include="Assets\timeKeeper.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

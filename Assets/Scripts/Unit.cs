@@ -1,18 +1,64 @@
 using UnityEngine;
 using System.Collections;
+using System.Linq;
+using UnityEngine.UI;
 
 public class Unit : MonoBehaviour
 {
 
-
-	public Transform target;
-	float speed = 20;
+	public float maxHealth = 30;
+	public float currentHealth = 30;
+	public float damage = 10;
+	public float armour = 5;
+	public float attackSpeed = 100;
+	public float speed = 100;
+	public float detectionRadius = 30;
+	public float attackRange = 5;
+	public bool aggressive = false;
+	public int friendlyLayerMask;
 	Vector3[] path;
 	int targetIndex;
+	GameObject healthBar;
+	public GameObject timeKeeper;
+
+	void Start()
+	{
+		currentHealth = maxHealth;
+		healthBar = gameObject.transform.Find("Canvas/HealthBar").gameObject;
+	}
 
 	void Update()
 	{
-		PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+		 if (aggressive)
+		{
+			RaycastHit2D enemy = Physics2D.CircleCast(transform.position, detectionRadius, Vector2.one,friendlyLayerMask);
+			if (enemy.collider!=null)
+			{
+				float distance = Vector3.Distance(transform.position, enemy.transform.position);
+				if (distance < attackRange)
+					attack(enemy.transform.gameObject);
+				GoToClick(enemy.collider.gameObject.transform.position);
+			}
+		}
+		 if (currentHealth < maxHealth)
+		{
+			healthBar.SetActive(true);
+			healthBar.GetComponent<Slider>().value = currentHealth / maxHealth;
+		}
+		 else if (healthBar.activeSelf)
+		{
+			healthBar.SetActive(false);
+		}
+	}
+
+	public void attack(GameObject enemy)
+	{
+
+	}
+
+	public void GoToClick(Vector3 target)
+	{
+		PathRequestManager.RequestPath(transform.position, target, OnPathFound);
 	}
 
 	public void OnPathFound(Vector3[] newPath, bool pathSuccessful)
@@ -28,22 +74,26 @@ public class Unit : MonoBehaviour
 
 	IEnumerator FollowPath()
 	{
-		Vector3 currentWaypoint = path[0];
-		while (true)
+		Vector3 currentWaypoint;
+		if (path.Count() > 0)
 		{
-			if (transform.position == currentWaypoint)
+			currentWaypoint = path[0];
+			while (true)
 			{
-				targetIndex++;
-				if (targetIndex >= path.Length)
+				if (transform.position == currentWaypoint)
 				{
-					yield break;
+					targetIndex++;
+					if (targetIndex >= path.Length)
+					{
+						yield break;
+					}
+					currentWaypoint = path[targetIndex];
 				}
-				currentWaypoint = path[targetIndex];
+
+				transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
+				yield return null;
+
 			}
-
-			transform.position = Vector3.MoveTowards(transform.position, currentWaypoint, speed * Time.deltaTime);
-			yield return null;
-
 		}
 	}
 
