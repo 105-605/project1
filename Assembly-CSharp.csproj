@@ -62,6 +62,9 @@
     <Compile Include="Assets\scr.cs" />
     <Compile Include="Assets\Scripts\PathfindingGrid.cs" />
     <Compile Include="Assets\scip.cs" />
+    <Compile Include="Assets\Scripts\heap.cs" />
+    <Compile Include="Assets\Scripts\PathRequestManager.cs" />
+    <Compile Include="Assets\Scripts\Unit.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
