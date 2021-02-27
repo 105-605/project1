@@ -1,7 +1,7 @@
 Library/Artifacts/*
 Logs/*
 Library/ArtifactDB
-
+*.meta
 Library/PackageCache/com.unity.sysroot.linux-x86_64@0.1.14-preview/data~/payload.tar.7z
  Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
  #
