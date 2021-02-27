@@ -4,8 +4,12 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - controllable
   - friendlyBuilding
+=======
+  - UI
+>>>>>>> 38ae53825b2d60166b69c6b2019a1de4644d2d89
   layers:
   - Default
   - TransparentFX
