@@ -44,10 +44,10 @@ public class PathfindingGrid : MonoBehaviour
             }
         }
     }
-    public List<Node> GetNeighbours(Node node)
-    {
-
-    }
+  //  public List<Node> GetNeighbours(Node node)
+  //  {
+  //      ;
+  //  }
     public Node NodeFromWorldPoint(UnityEngine.Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
