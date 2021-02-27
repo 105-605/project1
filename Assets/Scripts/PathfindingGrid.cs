@@ -40,11 +40,14 @@ public class PathfindingGrid : MonoBehaviour
             {
                 UnityEngine.Vector3 worldPoint = worldBottomLeft + UnityEngine.Vector3.right * (x * nodeDiameter + nodeRadius) + UnityEngine.Vector3.up * (y * nodeDiameter + nodeRadius);
                 bool walkable = !(Physics.CheckSphere(worldPoint, nodeRadius, unwalkableMask));
-                grid[x, y] = new Node(walkable, worldPoint);
+                grid[x, y] = new Node(walkable, worldPoint, x, y);
             }
         }
     }
+    public List<Node> GetNeighbours(Node node)
+    {
 
+    }
     public Node NodeFromWorldPoint(UnityEngine.Vector3 worldPosition)
     {
         float percentX = (worldPosition.x + gridWorldSize.x / 2) / gridWorldSize.x;
@@ -75,16 +78,18 @@ public class PathfindingGrid : MonoBehaviour
 
     public class Node
     {
-
+        public int gridX, gridY;
         public bool walkable;
         public UnityEngine.Vector3 worldPosition;
         public int gCost;
         public int hCost;
 
-        public Node(bool _walkable, UnityEngine.Vector3 _worldPos)
+        public Node(bool _walkable, UnityEngine.Vector3 _worldPos, int _gridX, int _gridY)
         {
             walkable = _walkable;
             worldPosition = _worldPos;
+            gridX = _gridX;
+            gridY = _gridY;
         }
 
         public int fCost
